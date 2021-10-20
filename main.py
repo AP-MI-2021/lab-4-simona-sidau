@@ -138,6 +138,8 @@ def main():
         elif optiune == "5":
             afisare = inlocuire_numar_cu_tuplu_suma(lst)
             print(afisare)
+        else:
+            print("Optiune inexistenta! Reincercati!")
 
 
 main()
