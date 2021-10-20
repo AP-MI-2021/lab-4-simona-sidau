@@ -1,3 +1,4 @@
+from collections import Counter
 def citire_lista():
     """
     Citeste o lista de numere intregi cu n elemente
@@ -51,14 +52,35 @@ def test_suma_numere_pare():
     assert suma_numere_pare([12, 4, 6]) == 22
 
 
+def lst_numere_pare(lst):
+    """
+    Determina elementele pare dintr-o lista
+    :param lst: lista numere intregi
+    :return: elementele pare din lista
+    """
+    rezultat = []
+    for x in lst:
+        if x % 2 == 0 and rezultat.count(x) == 0:
+            rezultat.append(x)
+    return rezultat
+
+
+def test_lst_numere_pare():
+    assert lst_numere_pare([12, 5, 18, 92, 12]) == [12, 18, 92]
+    assert lst_numere_pare([13, 15, 17, 5]) == []
+    assert lst_numere_pare([12, 14, 18, 20, 14]) == [12, 14, 18, 20]
+
+
 def main():
     lst = []
     test_gaseste_numar_pozitie()
     test_suma_numere_pare()
+    test_lst_numere_pare()
     while True:
         print("1.Citire lista cu un numar dat de elemente")
         print("2.Afisare daca un numar se gaseste in lista de la o pozitie data")
         print("3.Afisare suma numere pare")
+        print("4.Afisare numere pare din lista")
         print("a.Afisare lista")
         print("x.Exit")
         optiune = input("Alegeti optiunea: ")
@@ -78,6 +100,9 @@ def main():
                 print("NU")
         elif optiune == "3":
             afisare = suma_numere_pare(lst)
+            print(afisare)
+        elif optiune == "4":
+            afisare = lst_numere_pare(lst)
             print(afisare)
         else:
             print("Optiune inexistenta! Reincercati!")
