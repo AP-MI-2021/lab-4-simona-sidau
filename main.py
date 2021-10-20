@@ -32,12 +32,33 @@ def test_gaseste_numar_pozitie():
     assert gaseste_numar_pozitie([17, 19, 63, 45, 21], 21, 3) == 1
 
 
+def suma_numere_pare(lst):
+    """
+    Calculeaza suma elementelor pare dintr-o lista
+    :param lst: lista numere intregi
+    :return: suma elementelor pare
+    """
+    suma = 0
+    for x in lst:
+        if x % 2 == 0:
+            suma += x
+    return suma
+
+
+def test_suma_numere_pare():
+    assert suma_numere_pare([12, 7, 4]) == 16
+    assert suma_numere_pare([3, 7, 5]) == 0
+    assert suma_numere_pare([12, 4, 6]) == 22
+
+
 def main():
     lst = []
     test_gaseste_numar_pozitie()
+    test_suma_numere_pare()
     while True:
         print("1.Citire lista cu un numar dat de elemente")
         print("2.Afisare daca un numar se gaseste in lista de la o pozitie data")
+        print("3.Afisare suma numere pare")
         print("a.Afisare lista")
         print("x.Exit")
         optiune = input("Alegeti optiunea: ")
@@ -55,6 +76,9 @@ def main():
                 print("DA")
             else:
                 print("NU")
+        elif optiune == "3":
+            afisare = suma_numere_pare(lst)
+            print(afisare)
         else:
             print("Optiune inexistenta! Reincercati!")
 
