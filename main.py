@@ -71,16 +71,47 @@ def test_lst_numere_pare():
     assert lst_numere_pare([12, 14, 18, 20, 14]) == [12, 14, 18, 20]
 
 
+def inlocuire_numar_cu_tuplu_suma(lst):
+    """
+    Inlocuieste fiecare număr cu un tuplu format din două numere de pe
+    poziții distincte din listă care adunate dau acel număr, daca este posibil
+    :param lst: lista numere intregi
+    :return: lista obtinuta in urma inlocuirilor
+    """
+    rezultat =[]
+    for x in range(len(lst)):
+        gasit = 0
+        for i in range (0, len(lst)):
+            for j in range (i+1, len(lst)):
+                if lst[i] + lst[j] == lst[x]:
+                    if x is not i and i is not j and x is not j:
+                        tuplu = (lst[i], lst[j])
+                        gasit = 1
+        if gasit:
+            rezultat.append(tuplu)
+        else:
+            rezultat.append(lst[x])
+    return rezultat
+
+
+def test_inlocuire_numar_cu_tuplu_suma():
+    assert inlocuire_numar_cu_tuplu_suma([4, 8, 6, 3, 2, 1]) == [(3,1), (6, 2), (4,2), (2,1), 2, 1]
+    assert inlocuire_numar_cu_tuplu_suma([2, 4, 5, 6, 1, 9]) == [2, 4, (4,1), (5,1), 1, (4,5)]
+    assert inlocuire_numar_cu_tuplu_suma([7, 10, 15, 96]) == [7, 10, 15, 96]
+
+
 def main():
     lst = []
     test_gaseste_numar_pozitie()
     test_suma_numere_pare()
     test_lst_numere_pare()
+    test_inlocuire_numar_cu_tuplu_suma()
     while True:
         print("1.Citire lista cu un numar dat de elemente")
         print("2.Afisare daca un numar se gaseste in lista de la o pozitie data")
         print("3.Afisare suma numere pare")
         print("4.Afisare numere pare din lista")
+        print("5.Exercitiul 5")
         print("a.Afisare lista")
         print("x.Exit")
         optiune = input("Alegeti optiunea: ")
@@ -104,8 +135,9 @@ def main():
         elif optiune == "4":
             afisare = lst_numere_pare(lst)
             print(afisare)
-        else:
-            print("Optiune inexistenta! Reincercati!")
+        if optiune == "5":
+            afisare = inlocuire_numar_cu_tuplu_suma(lst)
+            print(afisare)
 
 
 main()
