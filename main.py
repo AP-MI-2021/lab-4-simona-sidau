@@ -135,7 +135,7 @@ def main():
         elif optiune == "4":
             afisare = lst_numere_pare(lst)
             print(afisare)
-        if optiune == "5":
+        elif optiune == "5":
             afisare = inlocuire_numar_cu_tuplu_suma(lst)
             print(afisare)
 
